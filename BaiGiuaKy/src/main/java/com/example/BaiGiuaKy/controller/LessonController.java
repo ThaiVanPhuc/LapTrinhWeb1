@@ -34,7 +34,7 @@ public class LessonController {
         }
     }
 
-    // Create new Lesson (Admin only)
+    // Create new Lesson
     @PostMapping("/lessons")
     @ResponseBody
     public ResponseEntity<Lesson> createLesson(@RequestBody Lesson newLesson) {
@@ -42,7 +42,7 @@ public class LessonController {
         return ResponseEntity.status(201).body(savedLesson);
     }
 
-    // Update Lesson by id (Admin only)
+    // Update Lesson by id
     @PutMapping("/lessons/{id}")
     @ResponseBody
     public ResponseEntity<Lesson> updateLesson(@PathVariable("id") String lessonId, @RequestBody Lesson updateLesson) {
@@ -57,7 +57,7 @@ public class LessonController {
         }
     }
 
-    // Delete Lesson by id (Admin only)
+    // Delete Lesson by id
     @DeleteMapping("/lessons/{id}")
     @ResponseBody
     public ResponseEntity<Void> deleteLesson(@PathVariable("id") String lessonId) {

@@ -8,5 +8,4 @@ public class BaiGiuaKyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BaiGiuaKyApplication.class, args);
 	}
-
 }
