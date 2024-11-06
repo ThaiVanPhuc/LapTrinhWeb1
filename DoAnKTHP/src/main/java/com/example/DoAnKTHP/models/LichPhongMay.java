@@ -10,7 +10,7 @@ public class LichPhongMay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.DATE)
+    // @Temporal(TemporalType.DATE)
     private Date ngay;
 
     private int ca;

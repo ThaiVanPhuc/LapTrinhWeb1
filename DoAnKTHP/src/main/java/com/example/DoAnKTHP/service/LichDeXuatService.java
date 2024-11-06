@@ -1,6 +1,7 @@
 package com.example.DoAnKTHP.service;
 
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -42,25 +43,19 @@ public class LichDeXuatService {
             return danhSachDeXuat; // Trả về danh sách trống nếu không có giảng viên
         }
 
-        int thu = calendar.get(Calendar.DAY_OF_WEEK);
-        if (thu == Calendar.SUNDAY) {
-            calendar.add(Calendar.DATE, 1); // Bỏ qua Chủ Nhật, bắt đầu từ Thứ Hai
-            thu = Calendar.MONDAY;
-        }
-
         // Lặp qua các ngày từ hiện tại đến thứ Bảy
-        while (thu <= Calendar.SATURDAY) {
-            Date ngay = new Date(calendar.getTimeInMillis());
+        for (int i = 0; i < 7; i++) {
+            LocalDate localDate = LocalDate.now();
+            Date ngay = java.sql.Date.valueOf(localDate);
             for (int ca = 1; ca <= 5; ca++) {
                 // Lấy danh sách phòng trống
-                List<LichPhongMay> danhSachPhongTrong = lichPhongMayRepository.findByNgayAndCaAndTrangThai(ngay, ca,
-                        false);
+                List<LichPhongMay> danhSachPhongTrong = lichPhongMayRepository.findByPhongAndNgayAndCa(ngay, ca,
+                        true);
 
-                // Kiểm tra lớp và lịch giảng viên trùng
                 List<LichLop> lopHoc = lichLopRepository.findByLopAndNgayAndCa(lop, ngay, ca);
-                List<LichGiangVien> lichGV = lichGiangVienRepository.findByNgayAndCa(ngay, ca);
+                List<LichGiangVien> lichGV = lichGiangVienRepository
+                        .findByGiangVienAndNgayAndCa(giangVien.getUserName(), ngay, ca);
 
-                // Nếu không có lớp học hoặc lịch giảng viên trùng, tạo lịch đề xuất
                 if (lopHoc.isEmpty() && lichGV.isEmpty()) {
                     List<String> danhSachPhong = new ArrayList<>();
                     for (LichPhongMay phongTrong : danhSachPhongTrong) {
@@ -77,10 +72,13 @@ public class LichDeXuatService {
                     danhSachDeXuat.add(lichDeXuat);
                 }
             }
-            calendar.add(Calendar.DATE, 1); // Chuyển sang ngày tiếp theo
-            thu = calendar.get(Calendar.DAY_OF_WEEK);
+            calendar.add(Calendar.DATE, 1);
         }
 
         return danhSachDeXuat;
+    }
+
+    public List<LichLop> getClassesForTeacher(String username) {
+        return lichLopRepository.findByTeacherUsername(username); // Lấy lớp giảng viên dạy từ repository
     }
 }

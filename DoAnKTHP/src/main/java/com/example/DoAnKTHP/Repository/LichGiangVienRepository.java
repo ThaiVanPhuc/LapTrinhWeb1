@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface LichGiangVienRepository extends JpaRepository<LichGiangVien, Long> {
-    List<LichGiangVien> findByNgayAndCa(Date ngay, int ca);
+    List<LichGiangVien> findByGiangVienAndNgayAndCa(String giangVien, Date ngay, int ca);
 }

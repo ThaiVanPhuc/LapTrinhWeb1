@@ -9,5 +9,5 @@ import com.example.DoAnKTHP.models.LichPhongMay;
 
 @Repository
 public interface LichPhongMayRepository extends JpaRepository<LichPhongMay, Long> {
-    List<LichPhongMay> findByNgayAndCaAndTrangThai(Date ngay, int ca, boolean trangThai);
+    List<LichPhongMay> findByPhongAndNgayAndCa(Date ngay, int ca, boolean trangThai);
 }
