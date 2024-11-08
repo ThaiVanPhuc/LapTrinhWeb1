@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.DoAnKTHP.models.LichLop;
-import com.example.DoAnKTHP.models.UserGV;
+import com.example.DoAnKTHP.models.GiangVien;
 import com.example.DoAnKTHP.service.UserGVService;
 import com.example.DoAnKTHP.service.LichDeXuatService;
 
@@ -35,13 +35,13 @@ public class UserLoginController {
     @PostMapping("/signup")
     public String signup(@RequestParam String username, @RequestParam String password, @RequestParam String email,
             ModelMap model) {
-        UserGV existingUser = userGVService.findUserByUsername(username);
+        GiangVien existingUser = userGVService.findUserByUsername(username);
         if (existingUser != null) {
             model.addAttribute("message", "Tên đăng nhập đã tồn tại!");
             return "signup";
         }
 
-        UserGV newUser = new UserGV();
+        GiangVien newUser = new GiangVien();
         newUser.setUserName(username);
         newUser.setPassWord(password);
         userGVService.saveUser(newUser);
@@ -59,7 +59,7 @@ public class UserLoginController {
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, ModelMap model,
             HttpSession session) {
-        UserGV user = userGVService.findUserByUsername(username);
+        GiangVien user = userGVService.findUserByUsername(username);
         if (user == null || !user.getPassWord().equals(password)) {
             model.addAttribute("ERROR", "Username hoặc Password không chính xác");
             return "login";
@@ -84,7 +84,7 @@ public class UserLoginController {
     // Trang chọn lớp
     @GetMapping("/select-class")
     public String showSelectClass(ModelMap model, HttpSession session) {
-        UserGV user = (UserGV) session.getAttribute("USERS");
+        GiangVien user = (GiangVien) session.getAttribute("USERS");
         if (user == null) {
             return "redirect:/"; // Nếu chưa đăng nhập, quay lại trang login
         }
@@ -96,7 +96,7 @@ public class UserLoginController {
     // Tạo lịch dạy cho lớp đã chọn
     @PostMapping("/generate-schedule")
     public String generateSchedule(@RequestParam String classId, ModelMap model, HttpSession session) {
-        UserGV user = (UserGV) session.getAttribute("USERS");
+        GiangVien user = (GiangVien) session.getAttribute("USERS");
         if (user == null) {
             return "redirect:/"; // Nếu chưa đăng nhập, quay lại trang login
         }

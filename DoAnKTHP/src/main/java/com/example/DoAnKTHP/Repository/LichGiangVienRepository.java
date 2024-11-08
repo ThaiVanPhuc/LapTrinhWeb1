@@ -5,10 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.DoAnKTHP.models.LichGiangVien;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface LichGiangVienRepository extends JpaRepository<LichGiangVien, Long> {
-    List<LichGiangVien> findByGiangVienAndNgayAndCa(String giangVien, Date ngay, int ca);
+    List<LichGiangVien> findByGiangVienIdAndCaAndThu(Long giangVienId, int ca, int thu);
 }

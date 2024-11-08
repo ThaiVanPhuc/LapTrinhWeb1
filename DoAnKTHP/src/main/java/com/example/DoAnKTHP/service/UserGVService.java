@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.DoAnKTHP.Repository.UserGVRepository;
-import com.example.DoAnKTHP.models.UserGV;
+import com.example.DoAnKTHP.models.GiangVien;
 
 @Service
 public class UserGVService {
@@ -12,11 +12,11 @@ public class UserGVService {
     @Autowired
     private UserGVRepository userGVRepository;
 
-    public UserGV findUserByUsername(String username) {
+    public GiangVien findUserByUsername(String username) {
         return userGVRepository.findUserGVByUserName(username);
     }
 
-    public void saveUser(UserGV user) {
+    public void saveUser(GiangVien user) {
         userGVRepository.save(user);
     }
 }

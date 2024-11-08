@@ -17,17 +17,17 @@ public class ProductsController {
     @Autowired
     private ProductsRepository repo;
 
-    @GetMapping({"", "/"})
+    @GetMapping({ "", "/" })
     public String ShowProductList(Model model) {
         List<Product> products = repo.findAll();
         model.addAttribute("products", products);
-        return "    ";
+        return "products/product";
     }
 
     @GetMapping("/index")
     public String ShowProducts(Model model) {
         List<Product> products = repo.findAll();
         model.addAttribute("products", products);
-        return "products/product";
+        return "products/product_detail";
     }
 }

@@ -4,10 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
-import com.example.DoAnKTHP.models.UserGV;
+import com.example.DoAnKTHP.models.GiangVien;
 
 @Repository
 @EnableJpaRepositories
-public interface UserGVRepository extends JpaRepository<UserGV, Integer> {
-    UserGV findUserGVByUserName(String username);
+public interface UserGVRepository extends JpaRepository<GiangVien, Integer> {
+    GiangVien findUserGVByUserName(String username);
 }

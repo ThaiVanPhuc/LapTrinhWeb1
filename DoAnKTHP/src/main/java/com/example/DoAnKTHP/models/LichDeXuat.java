@@ -1,21 +1,37 @@
 package com.example.DoAnKTHP.models;
 
-import java.util.Date;
-import java.util.List;
-
 public class LichDeXuat {
-    private Date ngay;
+    private String phong;
+    private int thu;
     private int ca;
-    private List<String> phong;
-    private String giangVien;
-    private String lop;
+    private String tenLop;
+    private Long giangVienId;
 
-    public Date getNgay() {
-        return ngay;
+    public LichDeXuat() {
     }
 
-    public void setNgay(Date ngay) {
-        this.ngay = ngay;
+    public LichDeXuat(String phong, int thu, int ca, String tenLop, Long giangVienId) {
+        this.phong = phong;
+        this.thu = thu;
+        this.ca = ca;
+        this.tenLop = tenLop;
+        this.giangVienId = giangVienId;
+    }
+
+    public String getPhong() {
+        return phong;
+    }
+
+    public void setPhong(String phong) {
+        this.phong = phong;
+    }
+
+    public int getThu() {
+        return thu;
+    }
+
+    public void setThu(int thu) {
+        this.thu = thu;
     }
 
     public int getCa() {
@@ -26,28 +42,20 @@ public class LichDeXuat {
         this.ca = ca;
     }
 
-    public List<String> getPhong() {
-        return phong;
+    public String getTenLop() {
+        return tenLop;
     }
 
-    public void setPhong(List<String> phong) {
-        this.phong = phong;
+    public void setTenLop(String tenLop) {
+        this.tenLop = tenLop;
     }
 
-    public String getGiangVien() {
-        return giangVien;
+    public Long getGiangVienId() {
+        return giangVienId;
     }
 
-    public void setGiangVien(String giangVien) {
-        this.giangVien = giangVien;
-    }
-
-    public String getLop() {
-        return lop;
-    }
-
-    public void setLop(String lop) {
-        this.lop = lop;
+    public void setGiangVienId(Long giangVienId) {
+        this.giangVienId = giangVienId;
     }
 
 }

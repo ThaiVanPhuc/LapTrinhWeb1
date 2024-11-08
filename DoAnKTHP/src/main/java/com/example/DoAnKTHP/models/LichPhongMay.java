@@ -1,7 +1,6 @@
 package com.example.DoAnKTHP.models;
 
 import jakarta.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "lich_phong_may")
@@ -10,12 +9,10 @@ public class LichPhongMay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @Temporal(TemporalType.DATE)
-    private Date ngay;
-
-    private int ca;
     private String phong;
-    private boolean trangThai;
+    private int thu;
+    private int ca;
+    private boolean trangthai;
 
     public Long getId() {
         return id;
@@ -23,22 +20,6 @@ public class LichPhongMay {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getNgay() {
-        return ngay;
-    }
-
-    public void setNgay(Date ngay) {
-        this.ngay = ngay;
-    }
-
-    public int getCa() {
-        return ca;
-    }
-
-    public void setCa(int ca) {
-        this.ca = ca;
     }
 
     public String getPhong() {
@@ -49,12 +30,28 @@ public class LichPhongMay {
         this.phong = phong;
     }
 
-    public boolean isTrangThai() {
-        return trangThai;
+    public int getThu() {
+        return thu;
     }
 
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
+    public void setThu(int thu) {
+        this.thu = thu;
+    }
+
+    public int getCa() {
+        return ca;
+    }
+
+    public void setCa(int ca) {
+        this.ca = ca;
+    }
+
+    public boolean isTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(boolean trangthai) {
+        this.trangthai = trangthai;
     }
 
 }
