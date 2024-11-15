@@ -8,9 +8,25 @@ public class LichGiangVien {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long giangvienId;
+
+    @ManyToOne
+    @JoinColumn(name = "giangvien_id")
+    private GiangVien giangVien;
+
     private int ca;
     private int thu;
+
+    @ManyToOne
+    @JoinColumn(name = "phong_id")
+    private PhongHoc phong;
+
+    @ManyToOne
+    @JoinColumn(name = "hoc_phan_id")
+    private HocPhan hocPhan;
+
+    @ManyToOne
+    @JoinColumn(name = "lop_hoc_id")
+    private LopHoc lopHoc;
 
     public Long getId() {
         return id;
@@ -20,12 +36,12 @@ public class LichGiangVien {
         this.id = id;
     }
 
-    public Long getGiangvienId() {
-        return giangvienId;
+    public GiangVien getGiangVien() {
+        return giangVien;
     }
 
-    public void setGiangvienId(Long giangvienId) {
-        this.giangvienId = giangvienId;
+    public void setGiangVien(GiangVien giangVien) {
+        this.giangVien = giangVien;
     }
 
     public int getCa() {
@@ -43,5 +59,4 @@ public class LichGiangVien {
     public void setThu(int thu) {
         this.thu = thu;
     }
-
 }

@@ -1,11 +1,14 @@
 package com.example.DoAnKTHP.models;
 
+import java.time.LocalDate;
+
 public class LichDeXuat {
     private String phong;
     private int thu;
     private int ca;
     private String tenLop;
     private Long giangVienId;
+    private LocalDate ngay;
 
     public LichDeXuat() {
     }
@@ -24,6 +27,14 @@ public class LichDeXuat {
 
     public void setPhong(String phong) {
         this.phong = phong;
+    }
+
+    public LocalDate getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(LocalDate ngay) {
+        this.ngay = ngay;
     }
 
     public int getThu() {

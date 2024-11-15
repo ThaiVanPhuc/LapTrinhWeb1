@@ -1,28 +1,34 @@
 package com.example.DoAnKTHP.Controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.DoAnKTHP.models.LichDeXuat;
 import com.example.DoAnKTHP.service.LichDeXuatService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
-@RestController
-@RequestMapping("/api")
+@Controller
+@RequestMapping("/api/lichdexuat")
 public class LichDeXuatController {
 
     @Autowired
     private LichDeXuatService lichDeXuatService;
 
-    // API lấy lịch dạy đề xuất cho lớp
-    @GetMapping("/lich-de-xuat/{lopId}")
-    public List<LichDeXuat> layLichDeXuat(@PathVariable("lopId") String lopId, HttpSession session) {
-        return lichDeXuatService.laylichDeXuat(lopId, session); // Trả về danh sách lịch dạy dưới dạng JSON
+    @GetMapping("/dexuat")
+    public String getLichDeXuat(@RequestParam String lop, @RequestParam Long giangVienId, Model model) {
+        List<LichDeXuat> danhSachLichDeXuat = lichDeXuatService.deXuatLich(lop, giangVienId);
+        model.addAttribute("danhSachLichDeXuat", danhSachLichDeXuat);
+        return "lichdexuat";
+    }
+
+    @GetMapping("/timlichdexuat")
+    public String timLichDeXuat(@RequestParam String lop, @RequestParam Long giangVienId, Model model) {
+        List<LichDeXuat> danhSachLichDeXuat = lichDeXuatService.deXuatLich(lop, giangVienId);
+        model.addAttribute("danhSachLichDeXuat", danhSachLichDeXuat);
+        return "timlichdexuat";
     }
 }

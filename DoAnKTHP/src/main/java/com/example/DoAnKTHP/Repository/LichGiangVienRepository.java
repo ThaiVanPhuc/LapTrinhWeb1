@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface LichGiangVienRepository extends JpaRepository<LichGiangVien, Long> {
-    List<LichGiangVien> findByGiangVienIdAndCaAndThu(Long giangVienId, int ca, int thu);
+    List<LichGiangVien> findByGiangVienId(Long giangvienId);
+
 }
