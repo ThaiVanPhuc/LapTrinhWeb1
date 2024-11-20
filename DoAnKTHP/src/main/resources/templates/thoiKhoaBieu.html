@@ -5,42 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thời Khóa Biểu</title>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+
+        h1 {
             text-align: center;
+            font-size: 36px;
+            color: #4CAF50;
+            margin: 40px 0;
         }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
         th {
-            background-color: #f4f4f4;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+
+        td {
+            font-size: 14px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #e2f1e0;
+        }
+
+        .ca {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .container {
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .info-box h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .logout-btn {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Thời Khóa Biểu</h1>
-    <table>
-        <tr>
-            <th>Thứ</th>
-            <th>Buổi</th>
-            <th>Tiết</th>
-            <th>Phòng</th>
-            <th>Học phần</th>
-            <th>Lớp học tập</th>
-        </tr>
-        <tr th:each="lich : ${thoiKhoaBieu}">
-            <td th:text="${lich.thu}"></td>
-            <td th:text="${lich.ca <= 2 ? 'Sáng' : (lich.ca <= 4 ? 'Chiều' : 'Tối')}"></td>
-            <td class="ca" th:text="${lich.ca}"></td>
-            <td th:text="${lich.phong.tenPhong}"></td>
-            <td th:text="${lich.hocPhan.tenHocPhan}"></td>
-            <td th:text="${lich.lopHoc.tenLop}"></td>
-        </tr>
-    </table>
+    <a href="/logout" class="logout-btn">Đăng xuất</a>
 
+    <div class="container">
+        <h1>Thời Khóa Biểu</h1>
+
+        <div class="info-box">
+            <h2>Chào mừng bạn!</h2>
+            <p>Đây là bảng thời khóa biểu của bạn. Dưới đây là các thông tin chi tiết về lịch học của giảng viên. Hãy tham khảo bảng dưới đây để biết thông tin về các buổi học, phòng học và lớp học cụ thể.</p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Thứ</th>
+                <th>Buổi</th>
+                <th>Tiết</th>
+                <th>Phòng</th>
+                <th>Học phần</th>
+                <th>Lớp học tập</th>
+            </tr>
+            <tr th:each="lich : ${thoiKhoaBieu}">
+                <td th:text="${lich.thu}"></td>
+                <td th:text="${lich.ca <= 2 ? 'Sáng' : (lich.ca <= 4 ? 'Chiều' : 'Tối')}"></td>
+                <td class="ca" th:text="${lich.ca}"></td>
+                <td th:text="${lich.phong.tenPhong}"></td>
+                <td th:text="${lich.hocPhan.tenHocPhan}"></td>
+                <td th:text="${lich.lopHoc.tenLop}"></td>
+            </tr>
+        </table>
+    </div>
     <script>
         function getTietRange(ca) {
             switch (parseInt(ca)) {

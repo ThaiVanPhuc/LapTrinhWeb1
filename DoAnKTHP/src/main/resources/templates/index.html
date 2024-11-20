@@ -5,40 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thời Khóa Biểu</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 450px;
             text-align: center;
         }
 
-        th {
-            background-color: #f4f4f4;
+        h1 {
+            font-size: 30px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="number"]:focus {
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h2 {
+            font-size: 20px;
+            color: #4CAF50;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .info-box h2 {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Thời Khóa Biểu</h1>
-    <form method="GET" action="/lich/giangvien">
-        <label for="giangVienId">Nhập ID Giảng Viên:</label>
-        <input type="number" id="giangVienId" name="giangVienId" required>
-        <button type="submit">Xem Thời Khóa Biểu</button>
-    </form>
+    <div class="container">
+        <h1>Thời Khóa Biểu</h1>
+        <p>Xin chào! Bạn có thể nhập ID giảng viên của mình để xem thời khóa biểu chi tiết.</p>
 
-    <table id="timetable">
-        <thead>
-            <tr>
-                <th>Thứ</th>
-                <th>Ca</th>
-                <th>Phòng</th>
-                <th>Học phần</th>
-                <th>Lớp học tập</th>
-            </tr>
-    </table>
+        <div class="info-box">
+            <h2>Hướng Dẫn</h2>
+            <p>Vui lòng nhập ID giảng viên mà bạn muốn tra cứu thời khóa biểu. Mỗi giảng viên sẽ có một ID riêng để truy cập thông tin lịch giảng. Nếu không biết ID của mình, vui lòng liên hệ với bộ phận hành chính.</p>
+        </div>
+
+        <form method="GET" action="/lich/giangvien">
+            <label for="giangVienId">Nhập ID Giảng Viên:</label>
+            <input type="number" id="giangVienId" name="giangVienId" required placeholder="VD: 12345">
+            <button type="submit">Xem Thời Khóa Biểu</button>
+        </form>
+
+        <div class="footer">
+            <p>© 2024 Trường Đại Học Đông Á | <a href="#">Hỗ trợ</a> | <a href="#">Liên hệ</a></p>
+        </div>
+    </div>
 </body>
 </html>

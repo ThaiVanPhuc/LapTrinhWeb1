@@ -32,11 +32,8 @@ public class UserLoginController {
             @RequestParam String email,
             ModelMap model) {
 
-        System.out.println("Received signup request for username: " + username);
-
         User existingUser = userGVService.findUserByUsername(username);
         if (existingUser != null) {
-            System.out.println("Username already exists: " + username);
             model.addAttribute("message", "Tên đăng nhập đã tồn tại!");
             return "signup";
         }
@@ -51,7 +48,6 @@ public class UserLoginController {
         newUser.setCreatedAt(createdAt);
         newUser.setUpdatedAt(createdAt);
 
-        System.out.println("Saving new user: " + newUser);
         userGVService.saveUser(newUser);
 
         model.addAttribute("message", "Đăng ký thành công! Vui lòng đăng nhập.");
@@ -81,7 +77,6 @@ public class UserLoginController {
         return "index";
     }
 
-    // Đăng xuất
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("USERS");

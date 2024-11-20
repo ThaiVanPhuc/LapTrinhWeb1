@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Sign Up</title>
+    <title>Đăng kí</title>
     <style>
         * {
             box-sizing: border-box;
@@ -117,14 +117,14 @@
     <div class="container">
         <!-- Left Panel (Login Prompt) -->
         <div class="left-panel">
-            <h2>Welcome Back!</h2>
-            <p>To keep connected with us please login with your personal info</p>
-            <button onclick="location.href='/login'">SIGN IN</button>
+            <h2>Chào mừng bạn!</h2>
+            <p>Đăng nhập nếu bạn đã có tài khoản!</p>
+            <button onclick="location.href='/login'">ĐĂNG NHẬP</button>
         </div>
 
         <!-- Right Panel (Sign Up Form) -->
         <div class="right-panel">
-            <h2>Create Account</h2>
+            <h2>Tạo Tài Khoản</h2>
             <form action="/signup" method="post">
                 <div class="input-group">
                     <input type="text" name="username" placeholder="Username" required>
@@ -136,7 +136,7 @@
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <p style="color: red;" th:text="${message}"></p>
-                <button type="submit">SIGN UP</button>
+                <button type="submit">Đăng Kí</button>
             </form>
         </div>
     </div>
