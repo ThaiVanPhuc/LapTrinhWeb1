@@ -3,20 +3,23 @@ package com.example.DoAnKTHP.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.DoAnKTHP.Repository.GiangVienRepository;
-import com.example.DoAnKTHP.models.GiangVien;
+import com.example.DoAnKTHP.Repository.UserRepository;
+import com.example.DoAnKTHP.models.User;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserGVService {
 
     @Autowired
-    private GiangVienRepository userGVRepository;
+    private UserRepository userRepository;
 
-    public GiangVien findUserByUsername(String tenGiangVien) {
-        return userGVRepository.findByTenGiangVien(tenGiangVien);
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
-    public void saveUser(GiangVien user) {
-        userGVRepository.save(user);
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

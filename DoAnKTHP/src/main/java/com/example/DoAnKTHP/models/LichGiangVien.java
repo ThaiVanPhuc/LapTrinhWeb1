@@ -1,5 +1,7 @@
 package com.example.DoAnKTHP.models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,8 @@ public class LichGiangVien {
 
     private int ca;
     private int thu;
+    @Column(name = "ngay", nullable = false)
+    private LocalDate ngay;
 
     @ManyToOne
     @JoinColumn(name = "phong_id")
@@ -59,4 +63,37 @@ public class LichGiangVien {
     public void setThu(int thu) {
         this.thu = thu;
     }
+
+    public LocalDate getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(LocalDate ngay) {
+        this.ngay = ngay;
+    }
+
+    public PhongHoc getPhong() {
+        return phong;
+    }
+
+    public void setPhong(PhongHoc phong) {
+        this.phong = phong;
+    }
+
+    public HocPhan getHocPhan() {
+        return hocPhan;
+    }
+
+    public void setHocPhan(HocPhan hocPhan) {
+        this.hocPhan = hocPhan;
+    }
+
+    public LopHoc getLopHoc() {
+        return lopHoc;
+    }
+
+    public void setLopHoc(LopHoc lopHoc) {
+        this.lopHoc = lopHoc;
+    }
+
 }
