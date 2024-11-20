@@ -50,7 +50,7 @@ public class UserLoginController {
 
         newUser.setCreatedAt(createdAt);
         newUser.setUpdatedAt(createdAt);
-
+// 
         System.out.println("Saving new user: " + newUser);
         userGVService.saveUser(newUser);
 
