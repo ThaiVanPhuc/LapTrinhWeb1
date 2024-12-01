@@ -25,57 +25,59 @@ public class UserLoginController {
         return "signup";
     }
 
-    @PostMapping("/signup")
-    public String signup(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String email,
-            ModelMap model) {
+    // @PostMapping("/signup")
+    // public String signup(
+    // @RequestParam String username,
+    // @RequestParam String password,
+    // @RequestParam String email,
+    // ModelMap model) {
 
-        User existingUser = userGVService.findUserByUsername(username);
-        if (existingUser != null) {
-            model.addAttribute("message", "Tên đăng nhập đã tồn tại!");
-            return "signup";
-        }
+    // User existingUser = userGVService.findUserByUsername(username);
+    // if (existingUser != null) {
+    // model.addAttribute("message", "Tên đăng nhập đã tồn tại!");
+    // return "signup";
+    // }
 
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        newUser.setRole("USER");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String createdAt = java.time.LocalDateTime.now().format(formatter);
+    // User newUser = new User();
+    // newUser.setUsername(username);
+    // newUser.setPassword(password);
+    // newUser.setRole("USER");
+    // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd
+    // HH:mm:ss");
+    // String createdAt = java.time.LocalDateTime.now().format(formatter);
 
-        newUser.setCreatedAt(createdAt);
-        newUser.setUpdatedAt(createdAt);
+    // newUser.setCreatedAt(createdAt);
+    // newUser.setUpdatedAt(createdAt);
 
-        userGVService.saveUser(newUser);
+    // userGVService.saveUser(newUser);
 
-        model.addAttribute("message", "Đăng ký thành công! Vui lòng đăng nhập.");
-        return "login";
-    }
+    // model.addAttribute("message", "Đăng ký thành công! Vui lòng đăng nhập.");
+    // return "login";
+    // }
 
     @GetMapping("/login")
     public String showLogin(ModelMap model) {
+        model.addAttribute("user", new User());
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(
-            @RequestParam String username,
-            @RequestParam String password,
-            ModelMap model,
-            HttpSession session) {
+    // @PostMapping("/login")
+    // public String login(
+    // @RequestParam String username,
+    // @RequestParam String password,
+    // ModelMap model,
+    // HttpSession session) {
 
-        User user = userGVService.findUserByUsername(username);
+    // User user = userGVService.findUserByUsername(username);
 
-        if (user == null || !user.getPassword().equals(password)) {
-            model.addAttribute("ERROR", "Username hoặc Password không chính xác");
-            return "login";
-        }
+    // if (user == null || !user.getPassword().equals(password)) {
+    // model.addAttribute("ERROR", "Username hoặc Password không chính xác");
+    // return "login";
+    // }
 
-        session.setAttribute("USERS", user);
-        return "index";
-    }
+    // session.setAttribute("USERS", user);
+    // return "index";
+    // }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

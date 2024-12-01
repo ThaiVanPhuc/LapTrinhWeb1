@@ -27,9 +27,9 @@ public class TKBGiangVienController {
 
     @GetMapping("/giangvien")
     public String getThoiKhoaBieu(@RequestParam("giangVienId") Long giangVienId, Model model, HttpSession session) {
-        if (!authService.isUserLoggedIn(session)) {
-            return "redirect:/login";
-        }
+        // if (!authService.isUserLoggedIn(session)) {
+        // return "redirect:/login";
+        // }
 
         List<LichGiangVien> lichGiangVienList = lichGiangVienRepository.findByGiangVienId(giangVienId);
         model.addAttribute("thoiKhoaBieu", lichGiangVienList);
