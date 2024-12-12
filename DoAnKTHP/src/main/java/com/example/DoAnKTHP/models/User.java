@@ -1,5 +1,7 @@
 package com.example.DoAnKTHP.models;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +25,23 @@ public class User {
 
     @Column(name = "updated_at", length = 19)
     private String updatedAt;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<User_Role> userRoles;
+
+    public User() {
+    }
+
+    public User(Long id, String username, String password, String role, String createdAt, String updatedAt,
+            Set<User_Role> userRoles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.userRoles = userRoles;
+    }
 
     public Long getId() {
         return id;
@@ -70,6 +89,14 @@ public class User {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<User_Role> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<User_Role> userRoles) {
+        this.userRoles = userRoles;
     }
 
 }

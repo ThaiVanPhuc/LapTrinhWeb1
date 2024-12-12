@@ -6,20 +6,14 @@ import org.springframework.stereotype.Service;
 import com.example.DoAnKTHP.Repository.UserRepository;
 import com.example.DoAnKTHP.models.User;
 
-import jakarta.transaction.Transactional;
-
 @Service
-public class UserGVService {
-
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User findUserByUsername(String username) {
+    @Override
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    @Transactional
-    public void saveUser(User user) {
-        userRepository.save(user);
-    }
 }

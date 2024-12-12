@@ -2,7 +2,6 @@ package com.example.DoAnKTHP.Controller;
 
 import com.example.DoAnKTHP.Repository.LichGiangVienRepository;
 import com.example.DoAnKTHP.models.LichGiangVien;
-import com.example.DoAnKTHP.service.AuthService;
 
 import java.util.List;
 
@@ -22,17 +21,15 @@ public class TKBGiangVienController {
     @Autowired
     private LichGiangVienRepository lichGiangVienRepository;
 
-    @Autowired
-    private AuthService authService;
-
     @GetMapping("/giangvien")
     public String getThoiKhoaBieu(@RequestParam("giangVienId") Long giangVienId, Model model, HttpSession session) {
-        // if (!authService.isUserLoggedIn(session)) {
-        // return "redirect:/login";
-        // }
-
         List<LichGiangVien> lichGiangVienList = lichGiangVienRepository.findByGiangVienId(giangVienId);
         model.addAttribute("thoiKhoaBieu", lichGiangVienList);
         return "thoiKhoaBieu";
+    }
+
+    @GetMapping("/timgiangvien")
+    public String timgiangvine() {
+        return "index";
     }
 }
