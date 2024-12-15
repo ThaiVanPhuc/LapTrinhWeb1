@@ -17,9 +17,6 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @Column(name = "role", length = 50)
-    private String role;
-
     @Column(name = "created_at", nullable = false, length = 19)
     private String createdAt;
 
@@ -37,7 +34,6 @@ public class User {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.role = role;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.userRoles = userRoles;
@@ -65,14 +61,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getCreatedAt() {
