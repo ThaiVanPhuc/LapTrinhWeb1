@@ -1,10 +1,12 @@
 package com.example.DoAnKTHP.models;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PhongHoc")
 public class PhongHoc {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -12,17 +14,20 @@ public class PhongHoc {
     @Column(name = "ten_phong", nullable = false, length = 100)
     private String tenPhong;
 
-    @Column(name = "created_at", nullable = false, length = 19)
-    private String createdAt;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", length = 19)
-    private String updatedAt;
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
-    @Column(name = "created_by_user_id", nullable = false)
-    private Long createdByUserId;
+    // Getter and Setter methods
 
-    @Column(name = "updated_by_user_id")
-    private Long updatedByUserId;
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
 
     public Long getId() {
         return id;
@@ -40,36 +45,19 @@ public class PhongHoc {
         this.tenPhong = tenPhong;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    public Long getCreatedByUserId() {
-        return createdByUserId;
-    }
-
-    public void setCreatedByUserId(Long createdByUserId) {
-        this.createdByUserId = createdByUserId;
-    }
-
-    public Long getUpdatedByUserId() {
-        return updatedByUserId;
-    }
-
-    public void setUpdatedByUserId(Long updatedByUserId) {
-        this.updatedByUserId = updatedByUserId;
-    }
-
 }
