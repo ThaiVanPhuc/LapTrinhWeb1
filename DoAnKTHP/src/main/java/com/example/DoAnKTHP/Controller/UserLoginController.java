@@ -10,14 +10,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.DoAnKTHP.Repository.RoleRepository;
 import com.example.DoAnKTHP.Repository.UserRepository;
+import com.example.DoAnKTHP.Repository.UserRoleRepository;
+import com.example.DoAnKTHP.models.Role;
 import com.example.DoAnKTHP.models.User;
+import com.example.DoAnKTHP.models.User_Role;
+
 import org.springframework.ui.Model;
 
 @Controller
 public class UserLoginController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -27,16 +39,27 @@ public class UserLoginController {
             model.addAttribute("message", "Username đã tồn tại!");
             return "signup";
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        user.setRole("USER");
+        Role userRole = roleRepository.findByName("USER");
+        if (userRole == null) {
+            userRole = new Role();
+            userRole.setName("USER");
+            roleRepository.save(userRole);
+        }
+
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedNow = now.format(formatter);
-
         user.setCreatedAt(formattedNow);
         user.setUpdatedAt(formattedNow);
         userRepository.save(user);
+
+        User_Role userRoleMapping = new User_Role();
+        userRoleMapping.setUser(user);
+        userRoleMapping.setRole(userRole);
+        userRoleRepository.save(userRoleMapping);
         return "redirect:/login";
     }
 
