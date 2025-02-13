@@ -29,9 +29,14 @@ public class API_TKBController {
     }
 
     @PostMapping("/add")
+    @ResponseBody
     public ResponseEntity<LichGiangVien> addSchedule(@RequestBody LichGiangVien schedule) {
+        System.out.println("Received schedule: " + schedule);
         LichGiangVien savedSchedule = lichGiangVienService.saveSchedule(schedule);
-        return ResponseEntity.ok(savedSchedule);
+        System.out.println("======================================================================");
+        System.out.println(savedSchedule);
+        System.out.println("======================================================================");
+        return ResponseEntity.status(201).body(savedSchedule);
     }
 
     @PutMapping("/edit/{id}")

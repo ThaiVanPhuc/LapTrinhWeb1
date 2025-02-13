@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/lich")
 public class TKBGiangVienController {
@@ -22,7 +20,7 @@ public class TKBGiangVienController {
     private LichGiangVienRepository lichGiangVienRepository;
 
     @GetMapping("/giangvien")
-    public String getThoiKhoaBieu(@RequestParam("giangVienId") Long giangVienId, Model model, HttpSession session) {
+    public String getThoiKhoaBieu(@RequestParam("giangVienId") Long giangVienId, Model model) {
         List<LichGiangVien> lichGiangVienList = lichGiangVienRepository.findByGiangVienId(giangVienId);
         model.addAttribute("thoiKhoaBieu", lichGiangVienList);
         return "thoiKhoaBieu";
